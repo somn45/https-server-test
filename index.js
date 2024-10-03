@@ -44,4 +44,4 @@ app.get('/jwt', (req, res) => {
 })
 
 const httpsServer = https.createServer(options, app);
-httpsServer.listen(PORT, () => console.log('서버 연결 성공'))
+httpsServer.listen(PORT, () => console.log(`${PORT} 포트 서버 연결 성공`))

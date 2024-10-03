@@ -5,10 +5,17 @@ import bodyParser from 'body-parser';
 import jwt from 'jsonwebtoken';
 import cookieParser from 'cookie-parser';
 import fs from 'fs';
-
+import https from 'https';
 
 const app = express();
 const PORT = 4000;
+
+const privateKey = fs.readFileSync('cert/localhost-key.pem');
+const certificate = fs.readFileSync('cert/localhost.pem');
+const options = {
+  key: privateKey,
+  cert: certificate,
+};
 
 app.use(cors({
   origin: 'https://localhost:3000',
@@ -36,4 +43,5 @@ app.get('/jwt', (req, res) => {
   return res.send('cookie');
 })
 
-app.listen(PORT, () => console.log(`${PORT} 포트 서버 연결 성공`));
+const httpsServer = https.createServer(options, app);
+httpsServer.listen(PORT, () => console.log(`${PORT} 포트 HTTPS 서버 연결 성공`))

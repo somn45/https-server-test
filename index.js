@@ -43,5 +43,7 @@ app.get('/jwt', (req, res) => {
   return res.send('cookie');
 })
 
+/*
 const httpsServer = https.createServer(options, app);
 httpsServer.listen(PORT, () => console.log(`${PORT} 포트 서버 연결 성공`))
+*/
